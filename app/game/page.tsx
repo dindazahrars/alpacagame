@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { AlpacaAvatar } from "@/components/AlpacaAvatar";
 import { AtmosphericLayers } from "@/components/AtmosphericLayers";
 import { BackgroundCanvas } from "@/components/BackgroundCanvas";
@@ -41,23 +41,6 @@ export default function GamePage() {
   const progress = getProgress();
   const [contentPhase, setContentPhase] = useState<ContentPhase>("entering");
   const [selectedChoiceId, setSelectedChoiceId] = useState<string | null>(null);
-  const timersRef = useRef<number[]>([]);
-  const advanceRef = useRef(advanceAfterReaction);
-
-  useEffect(() => {
-    advanceRef.current = advanceAfterReaction;
-  }, [advanceAfterReaction]);
-
-  const clearTimers = () => {
-    timersRef.current.forEach((timer) => window.clearTimeout(timer));
-    timersRef.current = [];
-  };
-
-  useEffect(() => {
-    return () => {
-      clearTimers();
-    };
-  }, []);
 
   useEffect(() => {
     setContentPhase("entering");
@@ -69,30 +52,6 @@ export default function GamePage() {
       window.clearTimeout(timer);
     };
   }, [state.phase, state.currentScenarioIndex, state.profile?.type]);
-
-  useEffect(() => {
-    if (state.phase !== "reaction") {
-      return;
-    }
-
-    clearTimers();
-
-    const fadeTimer = window.setTimeout(() => {
-      setContentPhase("leaving");
-    }, 2100);
-
-    const advanceTimer = window.setTimeout(() => {
-      advanceRef.current();
-      setSelectedChoiceId(null);
-    }, 2420);
-
-    timersRef.current.push(fadeTimer, advanceTimer);
-
-    return () => {
-      window.clearTimeout(fadeTimer);
-      window.clearTimeout(advanceTimer);
-    };
-  }, [state.phase, state.currentScenarioIndex]);
 
   const background = useMemo(() => {
     if (state.phase === "result" && state.profile) {
@@ -131,20 +90,17 @@ export default function GamePage() {
     submitChoice(choice);
   };
 
-  const skipReaction = () => {
+  const continueFromReaction = () => {
     if (state.phase !== "reaction") {
       return;
     }
 
-    clearTimers();
     setContentPhase("leaving");
 
-    const timer = window.setTimeout(() => {
-      advanceRef.current();
+    window.setTimeout(() => {
+      advanceAfterReaction();
       setSelectedChoiceId(null);
     }, 260);
-
-    timersRef.current.push(timer);
   };
 
   return (
@@ -270,12 +226,10 @@ export default function GamePage() {
                 />
 
                 {state.phase === "playing" || state.phase === "reaction" ? (
-                  <button
-                    type="button"
-                    onClick={state.phase === "reaction" ? skipReaction : undefined}
+                  <section
                     className={`speech-card text-left ${
                       contentPhase === "leaving" ? "content-leaving" : ""
-                    } ${state.phase === "reaction" ? "cursor-pointer" : "cursor-default"}`}
+                    }`}
                   >
                     <div className="flex flex-col items-center gap-4 sm:flex-row sm:items-end">
                       <div className="rounded-[24px] bg-white/25 p-3">
@@ -298,11 +252,23 @@ export default function GamePage() {
                         </div>
 
                         {state.phase === "reaction" ? (
-                          <p className="reaction-tip">Ketuk untuk lanjut</p>
+                          <div className="mt-4 flex flex-col items-start gap-3 sm:flex-row sm:items-center sm:justify-between">
+                            <p className="reaction-tip">
+                              Kalau sudah siap, lanjut ke momen berikutnya.
+                            </p>
+                            <button
+                              type="button"
+                              onClick={continueFromReaction}
+                              className="primary-cta min-w-[150px] justify-center"
+                            >
+                              Lanjut
+                              <span aria-hidden="true">{"\u2192"}</span>
+                            </button>
+                          </div>
                         ) : null}
                       </div>
                     </div>
-                  </button>
+                  </section>
                 ) : null}
 
                 {state.phase === "playing" ? (
