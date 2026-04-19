@@ -218,9 +218,7 @@ export default function GamePage() {
                   phase={contentPhase}
                   illustrationOverlay={
                     <div className="absolute inset-0 flex items-end justify-center pb-2 sm:pb-4">
-                      <div className="rounded-full bg-white/15 p-2 shadow-[0_12px_30px_rgba(0,0,0,0.08)]">
-                        <AlpacaAvatar emotion={scenario.alpacaDefaultEmotion} size="medium" />
-                      </div>
+                      <AlpacaAvatar emotion={scenario.alpacaDefaultEmotion} size="medium" />
                     </div>
                   }
                 />
@@ -228,6 +226,8 @@ export default function GamePage() {
                 {state.phase === "playing" || state.phase === "reaction" ? (
                   <section
                     className={`speech-card text-left ${
+                      state.phase === "playing" ? "speech-card-connected" : ""
+                    } ${
                       contentPhase === "leaving" ? "content-leaving" : ""
                     }`}
                   >
@@ -272,7 +272,7 @@ export default function GamePage() {
                 ) : null}
 
                 {state.phase === "playing" ? (
-                  <section className="choice-card">
+                  <section className="choice-card choice-card-connected">
                     <p className="choice-heading">
                       {"\u2726"} Apa yang akan Alpa lakukan?
                     </p>
