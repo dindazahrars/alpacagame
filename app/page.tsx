@@ -208,7 +208,7 @@ export default function HomePage() {
 
               <div className="mt-5 flex flex-wrap gap-2">
                 <span className="rounded-full bg-[#F7E7D7]/88 px-3 py-1.5 font-ui text-[0.78rem] font-semibold text-[#8B5E3C]">
-                  8 skenario cerita
+                  20 skenario cerita
                 </span>
                 <span className="rounded-full bg-[#E8DEF5]/92 px-3 py-1.5 font-ui text-[0.78rem] font-semibold text-[#5C4379]">
                   5 dimensi refleksi

@@ -20,6 +20,21 @@ export interface DimensionScores {
   HELP_SEEKING: number;
 }
 
+export type DimensionLevel =
+  | "critical"
+  | "low"
+  | "developing"
+  | "healthy"
+  | "thriving";
+
+export interface DimensionResult {
+  score: number;
+  level: DimensionLevel;
+  label: string;
+  description: string;
+  icon: string;
+}
+
 export interface ChoiceWeight {
   dimension: PsychDimension;
   score: number;
@@ -87,21 +102,11 @@ export type ProfileType =
   | "growing_butterfly"
   | "warm_hugger"
   | "calm_explorer"
-  | "cracked_light";
-
-export interface MentalHealthProfile {
-  type: ProfileType;
-  title: string;
-  subtitle: string;
-  description: string;
-  strengths: string[];
-  challenges: string[];
-  gentleMessage: string;
-  actionSuggestions: string[];
-  needsProfessionalNote: boolean;
-  alpacaVariant: AlpacaEmotion;
-  colorTheme: ProfileColorTheme;
-}
+  | "cracked_light"
+  | "overthinker_heart"
+  | "hidden_helper"
+  | "resilient_seed"
+  | "numb_wanderer";
 
 export interface ProfileColorTheme {
   primary: string;
@@ -111,18 +116,43 @@ export interface ProfileColorTheme {
   text: string;
 }
 
+export interface DetailedProfile {
+  type: ProfileType;
+  title: string;
+  subtitle: string;
+  tagline: string;
+  description: string;
+  strengths: string[];
+  challenges: string[];
+  blindSpots: string[];
+  gentleMessage: string;
+  weeklyChallenge: string;
+  actionSuggestions: string[];
+  affirmation: string;
+  needsProfessionalNote: boolean;
+  urgencyLevel: "none" | "suggested" | "recommended" | "urgent";
+  alpacaVariant: AlpacaEmotion;
+  accessories: AlpacaAccessory[];
+  colorTheme: ProfileColorTheme;
+  relatedProfiles: ProfileType[];
+}
+
+export type MentalHealthProfile = DetailedProfile;
+
 export interface GameState {
   phase: GamePhase;
   playerName: string;
   currentScenarioIndex: number;
   answers: AnsweredScenario[];
   scores: DimensionScores;
-  profile: MentalHealthProfile | null;
+  profile: DetailedProfile | null;
+  dimensionResults: Record<PsychDimension, DimensionResult> | null;
   lastChoiceReaction: {
     emotion: AlpacaEmotion;
     narrative: string;
   } | null;
   isTransitioning: boolean;
+  showMilestone: boolean;
 }
 
 export type GamePhase =
@@ -130,6 +160,7 @@ export type GamePhase =
   | "name_input"
   | "playing"
   | "reaction"
+  | "milestone"
   | "result";
 
 export interface AnsweredScenario {

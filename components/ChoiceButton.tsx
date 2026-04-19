@@ -10,7 +10,10 @@ interface ChoiceButtonProps {
   disabled?: boolean;
   isSelected?: boolean;
   isEntering?: boolean;
+  isPreviewing?: boolean;
   onSelect: (choice: Choice) => void;
+  onPreviewStart?: (choice: Choice) => void;
+  onPreviewEnd?: () => void;
 }
 
 interface RippleState {
@@ -26,7 +29,10 @@ export function ChoiceButton({
   disabled = false,
   isSelected = false,
   isEntering = false,
+  isPreviewing = false,
   onSelect,
+  onPreviewStart,
+  onPreviewEnd,
 }: ChoiceButtonProps) {
   const [isPressed, setIsPressed] = useState(false);
   const [ripple, setRipple] = useState<RippleState | null>(null);
@@ -79,7 +85,9 @@ export function ChoiceButton({
       disabled={disabled}
       className={`choice-button ${isPressed ? "choice-pressed" : ""} ${
         isSelected ? "choice-selected" : ""
-      } ${isEntering ? "choice-entering" : ""} ${
+      } ${isPreviewing ? "choice-previewing" : ""} ${
+        isEntering ? "choice-entering" : ""
+      } ${
         disabled ? "cursor-not-allowed opacity-80" : ""
       }`}
       style={
@@ -91,7 +99,23 @@ export function ChoiceButton({
       }
       onMouseDown={handleMouseDown}
       onMouseUp={handleMouseUp}
-      onMouseLeave={handleMouseUp}
+      onMouseLeave={() => {
+        handleMouseUp();
+        onPreviewEnd?.();
+      }}
+      onMouseEnter={() => {
+        if (!disabled) {
+          onPreviewStart?.(choice);
+        }
+      }}
+      onFocus={() => {
+        if (!disabled) {
+          onPreviewStart?.(choice);
+        }
+      }}
+      onBlur={() => {
+        onPreviewEnd?.();
+      }}
       onClick={() => {
         if (!disabled) {
           onSelect(choice);

@@ -28,6 +28,10 @@ const BADGE_COPY: Record<MentalHealthProfile["type"], string> = {
   warm_hugger: "Pelukan Hangat",
   calm_explorer: "Penjelajah Tenang",
   cracked_light: "Cahaya yang Retak",
+  overthinker_heart: "Hati yang Terlalu Berpikir",
+  hidden_helper: "Penolong yang Tersembunyi",
+  resilient_seed: "Benih yang Tangguh",
+  numb_wanderer: "Pengembara yang Mati Rasa",
 };
 
 export function ResultCard({
