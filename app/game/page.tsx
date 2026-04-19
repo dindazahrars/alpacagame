@@ -223,21 +223,72 @@ export default function GamePage() {
                   }
                 />
 
-                {state.phase === "playing" || state.phase === "reaction" ? (
+                {state.phase === "playing" ? (
                   <section
-                    className={`speech-card text-left ${
-                      state.phase === "playing" ? "speech-card-connected" : ""
-                    } ${
+                    className={`decision-card text-left ${
                       contentPhase === "leaving" ? "content-leaving" : ""
                     }`}
                   >
-                    <div className="flex flex-col items-center gap-4 sm:flex-row sm:items-end">
-                      <div className="rounded-[24px] bg-white/25 p-3">
+                    <div className="decision-top">
+                      <div className="decision-avatar-shell">
                         <AlpacaAvatar
                           key={`${scenario.id}-${reactionEmotion}`}
                           emotion={reactionEmotion}
                           size="medium"
-                          isReacting={state.phase === "reaction"}
+                        />
+                      </div>
+
+                      <div className="w-full flex-1">
+                        <div className="speech-bubble">
+                          <p className="font-accent text-[10px] uppercase tracking-[0.18em] text-[rgba(139,94,60,0.48)]">
+                            Suara hati Alpa
+                          </p>
+                          <p className="mt-2 font-display text-[1rem] leading-8 text-[#6B3D1E]">
+                            {reactionNarrative}
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="decision-divider" />
+
+                    <div className="decision-bottom">
+                      <p className="choice-heading">
+                        {"\u2726"} Apa yang akan Alpa lakukan?
+                      </p>
+                      <p className="choice-question">{scenario.question}</p>
+
+                      <div className="mt-5 space-y-3">
+                        {scenario.choices.map((choice, index) => (
+                          <ChoiceButton
+                            key={choice.id}
+                            choice={choice}
+                            label={CHOICE_LABELS[index] ?? String(index + 1)}
+                            index={index}
+                            isSelected={selectedChoiceId === choice.id}
+                            isEntering={contentPhase === "entering"}
+                            disabled={state.isTransitioning}
+                            onSelect={handleChoice}
+                          />
+                        ))}
+                      </div>
+                    </div>
+                  </section>
+                ) : null}
+
+                {state.phase === "reaction" ? (
+                  <section
+                    className={`speech-card text-left ${
+                      contentPhase === "leaving" ? "content-leaving" : ""
+                    }`}
+                  >
+                    <div className="flex flex-col items-center gap-4 sm:flex-row sm:items-end">
+                      <div className="decision-avatar-shell">
+                        <AlpacaAvatar
+                          key={`${scenario.id}-${reactionEmotion}`}
+                          emotion={reactionEmotion}
+                          size="medium"
+                          isReacting
                         />
                       </div>
 
@@ -251,46 +302,20 @@ export default function GamePage() {
                           </p>
                         </div>
 
-                        {state.phase === "reaction" ? (
-                          <div className="mt-4 flex flex-col items-start gap-3 sm:flex-row sm:items-center sm:justify-between">
-                            <p className="reaction-tip">
-                              Kalau sudah siap, lanjut ke momen berikutnya.
-                            </p>
-                            <button
-                              type="button"
-                              onClick={continueFromReaction}
-                              className="primary-cta min-w-[150px] justify-center"
-                            >
-                              Lanjut
-                              <span aria-hidden="true">{"\u2192"}</span>
-                            </button>
-                          </div>
-                        ) : null}
+                        <div className="mt-4 flex flex-col items-start gap-3 sm:flex-row sm:items-center sm:justify-between">
+                          <p className="reaction-tip">
+                            Kalau sudah siap, lanjut ke momen berikutnya.
+                          </p>
+                          <button
+                            type="button"
+                            onClick={continueFromReaction}
+                            className="primary-cta min-w-[150px] justify-center"
+                          >
+                            Lanjut
+                            <span aria-hidden="true">{"\u2192"}</span>
+                          </button>
+                        </div>
                       </div>
-                    </div>
-                  </section>
-                ) : null}
-
-                {state.phase === "playing" ? (
-                  <section className="choice-card choice-card-connected">
-                    <p className="choice-heading">
-                      {"\u2726"} Apa yang akan Alpa lakukan?
-                    </p>
-                    <p className="choice-question">{scenario.question}</p>
-
-                    <div className="mt-5 space-y-3">
-                      {scenario.choices.map((choice, index) => (
-                        <ChoiceButton
-                          key={choice.id}
-                          choice={choice}
-                          label={CHOICE_LABELS[index] ?? String(index + 1)}
-                          index={index}
-                          isSelected={selectedChoiceId === choice.id}
-                          isEntering={contentPhase === "entering"}
-                          disabled={state.isTransitioning}
-                          onSelect={handleChoice}
-                        />
-                      ))}
                     </div>
                   </section>
                 ) : null}

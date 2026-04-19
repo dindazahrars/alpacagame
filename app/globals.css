@@ -238,12 +238,48 @@ body {
     box-shadow: var(--bubble-shadow);
   }
 
-  .speech-card-connected {
-    margin-bottom: -0.6rem;
-    border-bottom-left-radius: 10px;
-    border-bottom-right-radius: 10px;
-    padding-bottom: 1.3rem;
-    box-shadow: 0 12px 26px rgba(92, 46, 10, 0.08);
+  .decision-card {
+    border-radius: 24px;
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    background: rgba(255, 245, 235, 0.76);
+    padding: 1rem;
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    box-shadow: var(--card-shadow);
+  }
+
+  .decision-top {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .decision-avatar-shell {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 24px;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.28) 0%, rgba(255, 255, 255, 0.14) 100%);
+    padding: 0.75rem;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.65);
+  }
+
+  .decision-divider {
+    margin: 1rem 0 1.1rem;
+    height: 1px;
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      rgba(232, 133, 90, 0.12) 16%,
+      rgba(232, 133, 90, 0.24) 50%,
+      rgba(232, 133, 90, 0.12) 84%,
+      transparent 100%
+    );
+  }
+
+  .decision-bottom {
+    padding: 0 0.15rem 0.1rem;
   }
 
   .speech-bubble {
@@ -262,13 +298,6 @@ body {
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
     box-shadow: var(--card-shadow);
-  }
-
-  .choice-card-connected {
-    position: relative;
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
-    padding-top: 1.65rem;
   }
 
   .choice-heading {
@@ -940,6 +969,20 @@ body {
 
   .top-bar-inner {
     padding: 0.8rem 1.5rem;
+  }
+
+  .decision-card {
+    padding: 1.2rem;
+  }
+
+  .decision-top {
+    flex-direction: row;
+    align-items: end;
+    gap: 1.25rem;
+  }
+
+  .decision-avatar-shell {
+    padding: 0.9rem;
   }
 }
 
