@@ -160,7 +160,7 @@ function LandingBackdrop() {
 
 export default function HomePage() {
   return (
-    <main className="relative isolate min-h-screen overflow-hidden">
+    <main className="relative isolate min-h-screen overflow-hidden pb-8 sm:pb-0">
       <AtmosphericLayers variant="dusk" />
       <BackgroundCanvas variant="dusk" />
       <LandingBackdrop />
@@ -179,19 +179,19 @@ export default function HomePage() {
         ))}
       </div>
 
-      <section className="relative z-20 flex min-h-screen items-center px-5 py-8 sm:px-7 lg:px-10">
-        <div className="mx-auto grid w-full max-w-[1240px] gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
+      <section className="relative z-20 flex min-h-screen items-start px-4 py-6 sm:items-center sm:px-7 sm:py-8 lg:px-10">
+        <div className="mx-auto grid w-full max-w-[1240px] gap-6 sm:gap-8 lg:grid-cols-[1.05fr_0.95fr] lg:items-center lg:gap-10">
           <div className="relative">
             <div className="pointer-events-none absolute -left-8 top-8 hidden h-32 w-32 rounded-full bg-[#FFF3E8]/70 blur-[42px] lg:block" />
             <div className="pointer-events-none absolute left-[24%] top-[34%] hidden h-24 w-24 rounded-full bg-[#FFD9A4]/40 blur-[36px] lg:block" />
 
-            <div className="max-w-[640px] rounded-[34px] border border-white/35 bg-[rgba(255,249,243,0.66)] px-5 py-6 backdrop-blur-[18px] shadow-[0_22px_60px_rgba(70,41,35,0.12)] sm:px-7 sm:py-7">
+            <div className="max-w-[640px] rounded-[28px] border border-white/35 bg-[rgba(255,249,243,0.66)] px-4 py-5 backdrop-blur-[18px] shadow-[0_22px_60px_rgba(70,41,35,0.12)] sm:rounded-[34px] sm:px-7 sm:py-7">
               <p className="font-accent text-[10px] uppercase tracking-[0.34em] text-[rgba(78,59,113,0.72)]">
                 {"\u2726"} Sebuah Cerita Interaktif tentang Perasaan {"\u2726"}
               </p>
 
               <h1
-                className="mt-5 font-display text-[2.85rem] font-bold leading-[0.9] tracking-[-0.03em] sm:text-[4.9rem]"
+                className="mt-4 font-display text-[2.3rem] font-bold leading-[0.92] tracking-[-0.03em] sm:mt-5 sm:text-[4.9rem]"
                 style={{
                   textShadow: "0 12px 32px rgba(78,59,113,0.08)",
                 }}
@@ -201,12 +201,12 @@ export default function HomePage() {
                 <span className="block text-[#CC5F49]">Journey</span>
               </h1>
 
-              <p className="mt-5 max-w-[580px] font-display text-[1.12rem] italic leading-8 text-[#6A4A61] sm:text-[1.3rem]">
+              <p className="mt-4 max-w-[580px] font-display text-[1rem] italic leading-7 text-[#6A4A61] sm:mt-5 sm:text-[1.3rem] sm:leading-8">
                 Ikuti perjalanan Alpa si alpaca chibi melewati momen-momen kecil yang
                 terasa dekat, lucu, sunyi, dan kadang diam-diam berat.
               </p>
 
-              <div className="mt-6 flex flex-wrap gap-2.5">
+              <div className="mt-5 flex flex-wrap gap-2">
                 <span className="rounded-full bg-[#F7E7D7]/88 px-3 py-1.5 font-ui text-[0.78rem] font-semibold text-[#8B5E3C]">
                   8 skenario cerita
                 </span>
@@ -218,7 +218,7 @@ export default function HomePage() {
                 </span>
               </div>
 
-              <div className="mt-7 max-w-[560px] space-y-4 font-ui text-[1rem] leading-8 text-[#5C2E0A]">
+              <div className="mt-6 max-w-[560px] space-y-3 font-ui text-[0.96rem] leading-7 text-[#5C2E0A] sm:mt-7 sm:space-y-4 sm:text-[1rem] sm:leading-8">
                 <p>
                   Alpa akan menemanimu melewati pagi yang berat, chat yang sepi,
                   sampai malam ketika isi kepala terasa terlalu penuh.
@@ -230,7 +230,7 @@ export default function HomePage() {
                 </p>
               </div>
 
-              <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:items-center">
+              <div className="mt-7 flex flex-col gap-3 sm:mt-8 sm:gap-4 sm:flex-row sm:items-center">
                 <Link
                   href="/game"
                   className="inline-flex items-center justify-center gap-3 rounded-full bg-[linear-gradient(135deg,#4D3A74_0%,#CC5F49_100%)] px-8 py-4 font-ui text-[1rem] font-bold text-white shadow-[0_14px_38px_rgba(77,58,116,0.28)] transition-all duration-200 hover:-translate-y-1 hover:shadow-[0_20px_48px_rgba(77,58,116,0.34)] active:translate-y-0 active:scale-[0.98]"
@@ -239,13 +239,13 @@ export default function HomePage() {
                   <span aria-hidden="true">{"\u2192"}</span>
                 </Link>
 
-                <p className="max-w-[250px] font-ui text-[0.84rem] leading-6 text-[rgba(78,59,113,0.72)]">
+                <p className="max-w-[250px] text-center font-ui text-[0.82rem] leading-6 text-[rgba(78,59,113,0.72)] sm:text-left sm:text-[0.84rem]">
                   Refleksi yang lembut, personal, dan tetap terasa aman untuk
                   dinikmati pelan-pelan.
                 </p>
               </div>
 
-              <div className="mt-7 rounded-[24px] border border-white/45 bg-[rgba(255,255,255,0.5)] px-5 py-4 font-ui text-[0.92rem] leading-7 text-[#6B3D1E] backdrop-blur-[14px]">
+              <div className="mt-6 rounded-[20px] border border-white/45 bg-[rgba(255,255,255,0.5)] px-4 py-4 font-ui text-[0.88rem] leading-6 text-[#6B3D1E] backdrop-blur-[14px] sm:mt-7 sm:rounded-[24px] sm:px-5 sm:text-[0.92rem] sm:leading-7">
                 Ini bukan diagnosis klinis. Hasilnya adalah refleksi ringan untuk
                 membantu kamu mengenali pola emosi, koneksi, self-compassion, dan
                 caramu menghadapi tekanan.
@@ -257,9 +257,9 @@ export default function HomePage() {
             <div className="pointer-events-none absolute right-[10%] top-[8%] hidden h-52 w-52 rounded-full bg-[#FFD18D]/42 blur-[56px] sm:block" />
             <div className="pointer-events-none absolute left-[12%] bottom-[14%] hidden h-40 w-40 rounded-full bg-[#E8DEF5]/58 blur-[48px] sm:block" />
 
-            <div className="relative w-full max-w-[500px]">
-              <div className="relative overflow-hidden rounded-[42px] border border-white/35 bg-[rgba(255,248,241,0.16)] p-3 shadow-[0_30px_80px_rgba(52,28,30,0.18)] backdrop-blur-[12px] sm:p-4">
-                <div className="relative h-[400px] overflow-hidden rounded-[34px] sm:h-[500px]">
+            <div className="relative w-full max-w-[290px] sm:max-w-[500px]">
+              <div className="relative overflow-hidden rounded-[30px] border border-white/35 bg-[rgba(255,248,241,0.16)] p-2.5 shadow-[0_24px_60px_rgba(52,28,30,0.18)] backdrop-blur-[12px] sm:rounded-[42px] sm:p-4 sm:shadow-[0_30px_80px_rgba(52,28,30,0.18)]">
+                <div className="relative h-[300px] overflow-hidden rounded-[24px] sm:h-[500px] sm:rounded-[34px]">
                   <SceneIllustration setting="park_sunset" background="dusk" />
                   <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_24%,rgba(255,247,232,0.44)_0%,rgba(255,247,232,0.08)_34%,transparent_56%),linear-gradient(180deg,rgba(255,255,255,0.02)_0%,rgba(35,20,40,0.1)_56%,rgba(35,20,40,0.22)_100%)]" />
 
@@ -278,18 +278,18 @@ export default function HomePage() {
                     </svg>
                   </div>
 
-                  <div className="absolute inset-x-0 bottom-0 flex justify-center px-6 pb-0 sm:px-8">
+                  <div className="absolute inset-x-0 bottom-[-8px] flex justify-center px-4 pb-0 sm:bottom-0 sm:px-8">
                     <AlpacaAvatar
                       emotion="hopeful"
                       size="hero"
                       accessories={["stars_around"]}
-                      className="sm:scale-[0.96]"
+                      className="scale-[0.62] sm:scale-[0.96]"
                     />
                   </div>
                 </div>
               </div>
 
-              <p className="mx-auto mt-4 max-w-[420px] text-center font-ui text-[0.95rem] leading-7 text-[rgba(255,247,241,0.88)] drop-shadow-[0_4px_16px_rgba(48,24,28,0.22)]">
+              <p className="mx-auto mt-4 max-w-[290px] text-center font-ui text-[0.88rem] leading-6 text-[rgba(255,247,241,0.9)] drop-shadow-[0_4px_16px_rgba(48,24,28,0.22)] sm:max-w-[420px] sm:text-[0.95rem] sm:leading-7">
                 Rasanya seperti buku cerita hangat yang pelan-pelan membantumu
                 memahami emosi, hubungan, dan caramu bertahan.
               </p>
@@ -298,7 +298,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      <footer className="absolute bottom-1 left-1/2 z-20 -translate-x-1/2 px-6 text-center font-ui text-[0.82rem] text-[rgba(255,248,241,0.82)] drop-shadow-[0_2px_10px_rgba(47,22,18,0.16)] sm:bottom-2">
+      <footer className="relative z-20 mx-auto mt-2 max-w-[320px] px-6 pb-4 text-center font-ui text-[0.76rem] leading-5 text-[rgba(255,248,241,0.82)] drop-shadow-[0_2px_10px_rgba(47,22,18,0.16)] sm:absolute sm:bottom-2 sm:left-1/2 sm:mt-0 sm:max-w-none sm:-translate-x-1/2 sm:pb-0 sm:text-[0.82rem]">
         Dibuat dengan {"\uD83D\uDC9B"} untuk kesadaran kesehatan mental
       </footer>
     </main>
