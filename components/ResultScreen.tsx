@@ -27,17 +27,17 @@ const POSITIVE_PROFILES = new Set([
 
 const URGENCY_BADGES = {
   suggested: {
-    text: "💛 Pertimbangkan berbicara dengan seseorang",
+    text: "\uD83D\uDC9B Pertimbangkan berbicara dengan seseorang",
     background: "rgba(250, 204, 21, 0.16)",
     color: "#8A5A00",
   },
   recommended: {
-    text: "🧡 Disarankan mencari dukungan profesional",
+    text: "\uD83E\uDDE1 Disarankan mencari dukungan profesional",
     background: "rgba(245, 158, 11, 0.18)",
     color: "#9A3412",
   },
   urgent: {
-    text: "❤️ Penting: kamu tidak harus sendirian",
+    text: "\u2764\uFE0F Penting: kamu tidak harus sendirian",
     background: "rgba(248, 113, 113, 0.18)",
     color: "#9F1239",
   },
@@ -111,7 +111,7 @@ export function ResultScreen({
     };
   }, [reducedMotion]);
 
-  const shareText = `Aku baru selesai bermain Alpaca Mental Wellness Journey! 🦙\nHasilku: ${profile.title}\n"${profile.tagline}"\nCoba juga yuk!`;
+  const shareText = `Aku baru selesai bermain Alpaca Mental Wellness Journey! \uD83E\uDD99\nHasilku: ${profile.title}\n"${profile.tagline}"\nCoba juga yuk!`;
 
   const confettiColors = useMemo(
     () => [
@@ -199,10 +199,10 @@ export function ResultScreen({
           </div>
         ) : null}
 
-        <div className="relative z-10 px-4 pb-6 pt-8 sm:px-8 sm:pb-8 sm:pt-10">
+        <div className="relative z-10 px-4 pb-6 pt-7 sm:px-8 sm:pb-8 sm:pt-10">
           <div className="text-center">
             <div
-              className="mx-auto flex h-[240px] w-[240px] items-center justify-center rounded-full sm:h-[320px] sm:w-[320px]"
+              className="mx-auto flex h-[214px] w-[214px] items-center justify-center overflow-hidden rounded-full sm:h-[320px] sm:w-[320px]"
               style={{
                 background: `radial-gradient(circle at 50% 32%, ${profile.colorTheme.accent} 0%, ${profile.colorTheme.secondary} 52%, ${profile.colorTheme.primary} 100%)`,
                 boxShadow: `0 24px 62px ${profile.colorTheme.secondary}55`,
@@ -213,17 +213,18 @@ export function ResultScreen({
                 emotion={profile.alpacaVariant}
                 size="hero"
                 accessories={profile.accessories}
+                className="origin-center scale-[0.62] -translate-y-3 sm:scale-100 sm:translate-y-0"
               />
             </div>
 
             <p
-              className="mt-6 font-accent text-[10px] uppercase tracking-[0.28em] text-[rgba(92,46,10,0.52)]"
+              className="mt-5 font-accent text-[9px] uppercase tracking-[0.24em] text-[rgba(92,46,10,0.52)] sm:mt-6 sm:text-[10px] sm:tracking-[0.28em]"
               style={{ animation: reducedMotion ? "none" : "contentEnter 420ms ease 400ms both" }}
             >
               HASIL PERJALANANMU
             </p>
             <p
-              className="mt-3 font-display text-[1.04rem] italic leading-8"
+              className="mx-auto mt-3 max-w-[300px] font-display text-[0.95rem] italic leading-7 sm:max-w-[640px] sm:text-[1.04rem] sm:leading-8"
               style={{
                 color: `${profile.colorTheme.text}B8`,
                 animation: reducedMotion ? "none" : "contentEnter 420ms ease 600ms both",
@@ -232,7 +233,7 @@ export function ResultScreen({
               {profile.tagline}
             </p>
             <h1
-              className="mt-2 font-display text-[2rem] font-bold leading-tight sm:text-[2.4rem]"
+              className="mt-3 font-display text-[2.1rem] font-bold leading-[1.05] sm:mt-2 sm:text-[2.4rem] sm:leading-tight"
               style={{
                 color: profile.colorTheme.primary,
                 animation: reducedMotion ? "none" : "contentEnter 460ms ease 800ms both",
@@ -241,7 +242,7 @@ export function ResultScreen({
               {profile.title}
             </h1>
             <p
-              className="mx-auto mt-3 max-w-[640px] font-display text-[1rem] italic leading-8"
+              className="mx-auto mt-3 max-w-[310px] font-display text-[0.95rem] italic leading-7 sm:max-w-[640px] sm:text-[1rem] sm:leading-8"
               style={{
                 color: `${profile.colorTheme.text}CC`,
                 animation: reducedMotion ? "none" : "contentEnter 420ms ease 1000ms both",
@@ -254,7 +255,7 @@ export function ResultScreen({
 
             {urgencyBadge ? (
               <div
-                className="mt-5 inline-flex rounded-full px-4 py-2 font-ui text-[0.86rem] font-semibold shadow-[0_10px_24px_rgba(92,46,10,0.08)]"
+                className="mt-5 inline-flex max-w-full rounded-full px-4 py-2 text-center font-ui text-[0.8rem] font-semibold leading-6 shadow-[0_10px_24px_rgba(92,46,10,0.08)] sm:text-[0.86rem]"
                 style={{
                   background: urgencyBadge.background,
                   color: urgencyBadge.color,
@@ -342,7 +343,7 @@ export function ResultScreen({
             <div className="mt-7 grid gap-6 sm:grid-cols-2">
               <div>
                 <p className="font-display text-[1.05rem] font-semibold text-[#5C2E0A]">
-                  ✦ Kekuatanmu
+                  {"\u2726"} Kekuatanmu
                 </p>
                 <ul className="mt-3 space-y-3">
                   {profile.strengths.map((strength) => (
@@ -351,7 +352,7 @@ export function ResultScreen({
                       className="flex gap-3 font-ui text-[0.95rem] leading-7 text-[#6B3D1E]"
                     >
                       <span aria-hidden="true" className="mt-1 text-[#F4A636]">
-                        ✦
+                        {"\u2726"}
                       </span>
                       <span>{strength}</span>
                     </li>
@@ -361,7 +362,7 @@ export function ResultScreen({
 
               <div>
                 <p className="font-display text-[1.05rem] font-semibold text-[#5C2E0A]">
-                  ○ Yang Perlu Diperhatikan
+                  {"\u25CB"} Yang Perlu Diperhatikan
                 </p>
                 <ul className="mt-3 space-y-3">
                   {profile.challenges.map((challenge) => (
@@ -370,7 +371,7 @@ export function ResultScreen({
                       className="flex gap-3 font-ui text-[0.95rem] leading-7 text-[#6B3D1E]"
                     >
                       <span aria-hidden="true" className="mt-1 text-[#E8855A]">
-                        ○
+                        {"\u25CB"}
                       </span>
                       <span>{challenge}</span>
                     </li>
@@ -387,7 +388,7 @@ export function ResultScreen({
               }}
             >
               <p className="font-display text-[1.04rem] font-semibold text-[#5C2E0A]">
-                🔍 Yang Mungkin Belum Kamu Sadari
+                {"\uD83D\uDD0D"} Yang Mungkin Belum Kamu Sadari
               </p>
               <ul className="mt-3 space-y-3">
                 {profile.blindSpots.map((spot) => (
@@ -395,7 +396,7 @@ export function ResultScreen({
                     key={spot}
                     className="flex gap-3 font-display text-[0.96rem] italic leading-8 text-[rgba(92,46,10,0.76)]"
                   >
-                    <span aria-hidden="true">🔍</span>
+                    <span aria-hidden="true">{"\uD83D\uDD0D"}</span>
                     <span>{spot}</span>
                   </li>
                 ))}
@@ -417,7 +418,7 @@ export function ResultScreen({
               }}
             >
               <p className="font-display text-[1.05rem] font-semibold text-[#5C2E0A]">
-                🎯 Tantangan Kecilmu Minggu Ini
+                {"\uD83C\uDFAF"} Tantangan Kecilmu Minggu Ini
               </p>
               <p className="mt-3 font-ui text-[0.96rem] leading-7 text-[#6B3D1E]">
                 {profile.weeklyChallenge}
@@ -428,7 +429,9 @@ export function ResultScreen({
                 disabled={challengeTaken}
                 className="secondary-cta mt-4"
               >
-                {challengeTaken ? "Sudah ditandai! 💛" : "Tandai sebagai tantanganku ✓"}
+                {challengeTaken
+                  ? `Sudah ditandai! ${"\uD83D\uDC9B"}`
+                  : `Tandai sebagai tantanganku ${"\u2713"}`}
               </button>
             </div>
 
@@ -487,7 +490,7 @@ export function ResultScreen({
             >
               <div className="flex flex-col gap-4 sm:flex-row">
                 <div className="text-[32px]" aria-hidden="true">
-                  💛
+                  {"\uD83D\uDC9B"}
                 </div>
                 <div>
                   <h3 className="font-display text-[1.2rem] font-semibold text-[#7F1D1D]">
@@ -529,7 +532,7 @@ export function ResultScreen({
 
             <div className="mt-4 rounded-[18px] border border-white/40 bg-white/60 px-4 py-4">
               <p className="font-ui text-[0.92rem] leading-7 text-[#6B3D1E]">
-                Aku baru selesai bermain Alpaca Mental Wellness Journey! 🦙
+                Aku baru selesai bermain Alpaca Mental Wellness Journey! {"\uD83E\uDD99"}
                 <br />
                 Hasilku: {profile.title}
                 <br />
@@ -541,21 +544,21 @@ export function ResultScreen({
 
             <div className="mt-5 flex flex-col gap-3 sm:flex-row">
               <button type="button" onClick={handleCopy} className="secondary-cta">
-                📋 Salin Teks
+                {"\uD83D\uDCCB"} Salin Teks
               </button>
               {copied ? (
                 <span className="inline-flex items-center rounded-full bg-[rgba(255,255,255,0.7)] px-4 py-2 font-ui text-[0.9rem] text-[#5C2E0A]">
-                  Tersalin! ✓
+                  Tersalin! {"\u2713"}
                 </span>
               ) : null}
             </div>
 
             <div className="mt-6 flex flex-col gap-3 sm:flex-row">
               <button type="button" onClick={onRestart} className="primary-cta">
-                🔄 Mulai Lagi dari Awal
+                {"\uD83D\uDD04"} Mulai Lagi dari Awal
               </button>
               <Link href="/" className="secondary-cta">
-                🏠 Kembali ke Beranda
+                {"\uD83C\uDFE0"} Kembali ke Beranda
               </Link>
             </div>
           </div>
